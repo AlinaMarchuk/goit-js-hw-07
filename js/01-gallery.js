@@ -1,8 +1,6 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-console.log(galleryItems);
-
 const container = document.querySelector('.gallery');
 let instance;
 let isModalOpen = false;
@@ -24,8 +22,10 @@ const str = galleryItems
   .join('');
 
 container.insertAdjacentHTML('beforeend', str);
+container.addEventListener('click', handleClick);
+document.addEventListener('keydown', modalClose);
 
-const handleClick = event => {
+function handleClick(event) {
   event.preventDefault();
   instance = basicLightbox.create(`
     <img src="${event.target.getAttribute('data-source')}">
@@ -33,13 +33,11 @@ const handleClick = event => {
 
   instance.show();
   isModalOpen = true;
-};
-container.addEventListener('click', handleClick);
+}
 
-const modalClose = event => {
+function modalClose(event) {
   if (isModalOpen && event.code === 'Escape') {
     instance.close();
     isModalOpen = false;
   }
-};
-document.addEventListener('keydown', modalClose);
+}
