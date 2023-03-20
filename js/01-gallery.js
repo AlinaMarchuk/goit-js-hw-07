@@ -27,12 +27,15 @@ document.addEventListener('keydown', modalClose);
 
 function handleClick(event) {
   event.preventDefault();
-  instance = basicLightbox.create(`
+
+  if (event.target !== event.currentTarget) {
+    instance = basicLightbox.create(`
     <img src="${event.target.getAttribute('data-source')}">
 `);
 
-  instance.show();
-  isModalOpen = true;
+    instance.show();
+    isModalOpen = true;
+  }
 }
 
 function modalClose(event) {
