@@ -28,7 +28,7 @@ document.addEventListener('keydown', modalClose);
 function handleClick(event) {
   event.preventDefault();
 
-  if (event.target !== event.currentTarget) {
+  if (event.target.nodeName === 'IMG') {
     instance = basicLightbox.create(`
     <img src="${event.target.getAttribute('data-source')}">
 `);
